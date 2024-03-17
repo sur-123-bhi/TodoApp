@@ -1,20 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
-import { Button, Typography, Box, TextField, Checkbox } from "@mui/material";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+import React, { useEffect } from "react";
+import { Typography, Box } from "@mui/material";
 import { Todos } from "./Todos";
+import InputTodo from './InputTodo';
+import { useSelector, useDispatch } from "react-redux";
+import { setTodos } from "../../redux/slices/todo-slice";
+import { handleLoadStatus } from "../../redux/slices/loadingModal-slice";
 
 export const TodoContainer = () => {
-  const [todo, setTodo] = useState("");
 
-  const [todoArr, setTodoArr] = useState([
-    "todo1mdnfbasjhfwekjhfkjnskdjafncsjakhfwekuhfkdsjnfmcfnsdmcnskjehf",
-    "todo2sdkafjakhgkjdshgfkajsdhgk;shda;gkhsa",
-    "todo3djfakhkjsahhahfkdsjhfoiwauehfaoeiwufgshdfkjsdfiwohfjo",
-  ]);
+  const todoArr = useSelector(state => state.todo.todos);
+  const loadingStatus = useSelector(state => state.load.loading);
+  const dispatch = useDispatch();
 
-  const handleSaveTodoInDatabase = () => {};
+  const fetchData = async () => {
+    dispatch(handleLoadStatus(true));
+    try {
+      const response = await fetch("http://localhost:3000/api/todos");
+      if (!response.ok) {
+        throw new Error("Failed to fetch todos");
+      }
+      const todoArr = await response.json();
+      dispatch(handleLoadStatus(false));
+      console.log('from fetch request     ',todoArr); // Check if you're receiving the todos array correctly
+      dispatch(setTodos(todoArr.todos));
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
 
   return (
     <Box
@@ -34,59 +53,16 @@ export const TodoContainer = () => {
       <Typography variant="h4" mb="10%">
         TODO APP
       </Typography>
-      <Box
-        display="flex"
-        mb="4%"
-        width="100%"
-        gap="2%"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <TextField
-          label="Write todo here"
-          color="secondary"
-          focused
-          fullWidth
-          onChange={(e) => setTodo(e.target.value)}
-        />
 
-        <input
-          type="date"
-          style={{
-            padding: "3%",
-            borderRadius: "5px",
-            border: "2px solid #9c27b0",
-            color: "#9c27b0",
-            outline: "none",
-            width: "350px",
-            backgroundColor:'white',
-          }}
-        />
-      </Box>
-
-      <Box width='50%' mb='5%'>
-        <Button
-          variant="contained"
-          fullWidth
-          sx={{
-            py: "2.5%",
-            bgcolor: "#ba68c8",
-            "&:hover": { bgcolor: "#9c27b0" },
-          }}
-          onClick={handleSaveTodoInDatabase}
-        >
-          <AddBoxIcon sx={{ mr: "3%" }} />
-          Add Todo
-        </Button>
-      </Box>
-
+      <InputTodo />
+      
       <Box
         display="flex"
         flexDirection="column"
         width="100%"
         height="fit-content"
       >
-        {todoArr.length > 0 &&
+        {loadingStatus ? <Typography variant="h4" sx={{m: 'auto', mt:'5%'}}>Loading ...</Typography> : 
           todoArr.map((todo, index) => {
             return (
               <Todos key={index} todo={todo}/>
