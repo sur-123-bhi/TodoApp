@@ -105,9 +105,3 @@ Exploring UI libraries or frameworks (e.g., Material-UI) to enhance the applicat
 
 <br/>
 
-Additional Notes:
-
-Feel free to modify the application to fit your specific requirements.
-Refer to the Drizzle ORM documentation (https://orm.drizzle.team/) for detailed information on using Drizzle ORM with Next.js and PostgreSQL.
-Consider exploring Next.js features like data fetching and state management to enhance the application's functionality.
-This readme provides a comprehensive overview of the project. As your application evolves, continue to update the readme with more specific details to enhance documentation and maintainability.
