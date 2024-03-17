@@ -5,6 +5,8 @@ Frontend: Next.js
 <br/>
 Backend: Next.js
 <br/>
+State Management: Redux
+<br/>
 Database: PostgreSQL
 <br/>
 ORM: Drizzle ORM
