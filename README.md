@@ -28,7 +28,7 @@ Clone the Repository:
 <br/>
 Bash
 <br/>
-git clone 
+git clone https://github.com/sur-123-bhi/TodoApp.git
 <br/>
 Use code with caution.
 <br/>
@@ -37,8 +37,6 @@ Use code with caution.
 Install Dependencies:
 <br/>
 Bash
-<br/>
-cd my-todo-app
 <br/>
 npm install
 <br/>
