@@ -1,40 +1,65 @@
-## Next.js Todo Application with Drizzle ORM and PostgreSQL
-
-This project implements a todo list application leveraging the power of Next.js for a dynamic and user-friendly frontend, Drizzle ORM for seamless database interactions, and PostgreSQL as the robust backend storage solution.
-
-Tech Stack:
+Next.js Todo Application with Drizzle ORM, PostgreSQL, and Material-UI
+This project implements a dynamic and user-friendly todo list application leveraging the power of:
 
 Frontend: Next.js
-Backend: Node.js with Express
+<br/>
+Backend: Next.js
+<br/>
 Database: PostgreSQL
+<br/>
 ORM: Drizzle ORM
-(Optional) Cache: Redis (not currently active)
+<br/>
+Cache: Redis (not currently active)
+<br/>
+UI Framework: Material-UI (for enhanced styling and interactivity)
+<br/>
+<br/>
 Getting Started:
 
 Prerequisites:
-
+<br/>
 Node.js and npm (or yarn) installed
+<br/>
 PostgreSQL database server running
+<br/>
+<br/>
+
 Clone the Repository:
-
+<br/>
 Bash
-git clone https://your-github-repo.git
+<br/>
+git clone 
+<br/>
 Use code with caution.
+<br/>
+<br/>
+
 Install Dependencies:
-
+<br/>
 Bash
+<br/>
 cd my-todo-app
+<br/>
 npm install
+<br/>
 Use code with caution.
-Environment Variables:
-Create a .env.local file at the project root and define the following environment variables:
+<br/>
+<br/>
 
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_USER=your_username
-POSTGRES_PASSWORD=your_password
-POSTGRES_DB=your_database_name
-Replace the placeholders with your actual PostgreSQL connection details.
+Environment Variables:
+<br/>
+Create a .env.development.local file at the project root and define the following environment variables:
+
+POSTGRES_URL="postgres://default:1tfwVlbJuZ6a@ep-gentle-hill-a4450v3q-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+POSTGRES_PRISMA_URL="postgres://default:1tfwVlbJuZ6a@ep-gentle-hill-a4450v3q-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
+POSTGRES_URL_NO_SSL="postgres://default:1tfwVlbJuZ6a@ep-gentle-hill-a4450v3q-pooler.us-east-1.aws.neon.tech:5432/verceldb"
+POSTGRES_URL_NON_POOLING="postgres://default:1tfwVlbJuZ6a@ep-gentle-hill-a4450v3q.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+POSTGRES_USER="default"
+POSTGRES_HOST="ep-gentle-hill-a4450v3q-pooler.us-east-1.aws.neon.tech"
+POSTGRES_PASSWORD="1tfwVlbJuZ6a"
+POSTGRES_DATABASE="verceldb"
+
+<br/>
 
 Start the Development Server:
 
@@ -45,36 +70,43 @@ This will start the Next.js development server at http://localhost:3000.
 
 Features:
 
-Create new todo items
-Mark existing items as completed or incomplete
-Delete todo items
-(Optional) Implement additional features as needed (e.g., edit todo items, due dates, user accounts)
+Create new todo 
+Edit any todo 
+Delete todo 
+Implement additional features as needed (e.g., edit task, due dates)
+
+<br/>
 Folder Structure:
 
-pages: Contains Next.js page components for the application's routes (e.g., index.js for the main todo list page).
+components: Contains Next.js page components for the application's routes (e.g., todoContainer.js for the main todo list page).
 api: Contains API routes for handling data requests (e.g., creating/deleting/fetching todos).
-db: Contains Drizzle ORM configuration and schema definition files for the todo table.
-utils: Contains utility functions for interacting with the database or other tasks.
-.env.local: Stores environment variables for database connection.
+lib/drizzle.js: Contains Drizzle ORM configuration and schema definition files for the todo table.
+utils: Contains utility functions for implementation of redis.
+.env.development.local: Stores environment variables for database connection.
+
+<br/>
+
 Functionality Breakdown:
 
-The index.js page component dynamically displays the current list of todos and provides input fields for adding new items.
+The todoContainer.js page component dynamically displays the current list of todos and provides input fields for adding new items.
 User interactions trigger functions that interact with API routes defined in the api directory.
 API routes utilize Drizzle ORM to perform CRUD operations (Create, Read, Update, Delete) on the todo table in the PostgreSQL database.
 Optional Redis Implementation:
 
 While not currently active, comments or code might exist for integrating Redis as a cache layer. This could potentially improve performance by caching frequently accessed data like the todo list. However, setting up Redis and configuring the integration requires additional work.
 
-Further Development:
+<br/>
 
-Consider implementing functionalities like:
+Further Development:
 
 Editing existing todo items
 Adding due dates and prioritizing tasks
-Implementing user authentication and authorization to manage private todo lists
-Integrating unit and integration tests for robust application testing
 Leveraging Next.js data fetching and state management techniques for better user experience
-Exploring UI libraries or frameworks (e.g., Tailwind CSS, Material-UI) to enhance the application's style and interactivity
+Utilizing Drizzle ORM's features and a robust PostgreSQL database for efficient data management and retrieval. 
+Exploring UI libraries or frameworks (e.g., Material-UI) to enhance the application's style and interactivity
+
+<br/>
+
 Additional Notes:
 
 Feel free to modify the application to fit your specific requirements.
